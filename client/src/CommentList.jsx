@@ -1,28 +1,23 @@
-import React, { useEffect, useState } from "react";
-import { commentInstance } from "./api/AxiosInstance";
 
-const CommentList = ({ postId }) => {
-  const [comments, setComments] = useState([]);
-
-   const fetchComments = async () => {
-    const res = await commentInstance.get(`/posts/${postId}/comments`);
-    setComments(res.data);
-  };
-
-  useEffect(() => {
-    fetchComments();
-  }, []);
-
-  // eslint-disable-next-line array-callback-return
+const CommentList = ({ comments }) => {
 
   return (
     <div className="bg-[#3e3e3e] w-full h-[130px] overflow-y-scroll p-2 absolute bottom-9">
       <ul>
-        {comments.map((comment) => (
+        {comments.map((comment) => {
+          let content;
+          switch(comment.status){
+            case 'approved': content = comment.content; break;
+            case 'pending': content = 'Still moderating..'; break;
+            case 'rejected': content = 'Content is rejected..'; break;
+            default: break;
+          }
+          return(
           <li key={comment?.id} className="bg-[#112f3c] rounded-lg p-1 mb-1">
-            {comment?.content}
+            {content}
           </li>
-        ))}
+          )
+          })}
       </ul>
     </div>
   );

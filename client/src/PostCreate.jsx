@@ -7,7 +7,7 @@ const PostCreate = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        await postInstance.post('/posts', {
+        await postInstance.post('/posts/create', {
             title,
         });
         setTitle('')

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { postInstance } from "./api/AxiosInstance";
+import { queryInstance } from "./api/AxiosInstance";
 import CreateComment from "./CreateComment";
 import CommentList from "./CommentList";
 
@@ -7,7 +7,7 @@ const PostList = () => {
   const [posts, setPosts] = useState({});
 
   const fetchPosts = async () => {
-    const res = await postInstance.get("/posts");
+    const res = await queryInstance.get("/posts");
     setPosts(res.data);
   };
   
@@ -20,7 +20,7 @@ const PostList = () => {
       <div className="flex justify-center items-center w-full text-wrap p-5">
         {post?.title}
       </div>
-      <CommentList postId={post?.id} />
+      <CommentList comments={post.comments} />
       <CreateComment postId={post?.id} />
     </div>
   ));
