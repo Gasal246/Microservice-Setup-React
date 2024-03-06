@@ -11,10 +11,6 @@ app.use(cors())
 
 const posts = {}
 
-// app.get('/posts', (req, res) => {
-//     res.send(posts)
-// })
-
 app.post('/posts/create', async (req, res) => {
     const id = randomBytes(4).toString('hex');
     const { title } = req.body;
@@ -40,6 +36,5 @@ app.post('/events', (req, res) => {
 })
 
 app.listen(4000, ()=>{
-    console.log("The new change is commited 2nd Time..");
     console.log("Posts Server running at port 4000..");
 })

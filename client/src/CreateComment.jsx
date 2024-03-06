@@ -7,7 +7,7 @@ const CreateComment = ({ postId }) => {
 
     const handleSubmit = async(e) => {
         e.preventDefault();
-        await commentInstance.post(`/posts/${postId}/comments`, {
+        await commentInstance.post(`/posts/create/${postId}/comments`, {
           content,
         })
         setContent('')

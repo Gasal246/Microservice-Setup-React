@@ -8,6 +8,7 @@ const PostList = () => {
 
   const fetchPosts = async () => {
     const res = await queryInstance.get("/posts");
+    console.log(res.data);
     setPosts(res.data);
   };
   
